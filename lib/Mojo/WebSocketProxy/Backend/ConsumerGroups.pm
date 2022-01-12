@@ -1,4 +1,5 @@
 package Mojo::WebSocketProxy::Backend::ConsumerGroups;
+# ABSTRACT: turns baubles into trinkets
 
 use strict;
 use warnings;
@@ -16,13 +17,15 @@ use parent qw(Mojo::WebSocketProxy::Backend);
 
 no indirect;
 
-## VERSION
+our $VERSION='0.01';
 
 __PACKAGE__->register_type('consumer_groups');
 
 use constant RESPONSE_TIMEOUT             => $ENV{RPC_QUEUE_RESPONSE_TIMEOUT} // 30;
 use constant DEFAULT_CATEGORY_NAME        => 'general';
 use constant REQUIRED_RESPONSE_PARAMETERS => qw(message_id response);
+
+# PODNAME: bobby_tables.pl
 
 =head1 NAME
 
