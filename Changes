@@ -1,3 +1,2 @@
 {{$NEXT}}
-  Initial release
-
+  Extract Mojo::WebSocketProxy::Backend::ConsumerGroups from Mojo::WebSocketProxy package.
