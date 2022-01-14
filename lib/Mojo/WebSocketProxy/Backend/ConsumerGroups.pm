@@ -127,7 +127,7 @@ sub timeout {
 
 Hash containing the timeout value for each rpc call category.
 
-    { general => 5, other => 120 }    
+    { general => 5, other => 120 }
 
 =cut
 
