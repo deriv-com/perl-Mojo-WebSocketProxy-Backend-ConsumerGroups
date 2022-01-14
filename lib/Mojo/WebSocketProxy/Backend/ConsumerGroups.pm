@@ -180,11 +180,11 @@ It takes the following arguments
 =item * C<msg_type> a name for this method; if not supplied C<method> is used.
 
 =item * C<call_params> a hashref of arguments on top of C<req_storage> to send to remote method. This will be suplemented with C<< $req_storage->{args} >>
-added as an C<args> key and be merged with C<< $req_storage->{stash_params} >> with stash_params overwriting any matching 
-keys in C<call_params>. 
+added as an C<args> key and be merged with C<< $req_storage->{stash_params} >> with stash_params overwriting any matching
+keys in C<call_params>.
 
 =item * C<rpc_response_callback>  If supplied this will be run with args: C<< Mojolicious::Controller >> instance, the rpc_response and C<< $req_storage >>.
-B<Note:> if C<< rpc_response_callback >> is supplied the success and error callbacks are not used. 
+B<Note:> if C<< rpc_response_callback >> is supplied the success and error callbacks are not used.
 
 =item * C<before_get_rpc_response>  arrayref of subroutines to be run before the remote response is received, with args: C<< $c >> and C<< req_storage >>
 
