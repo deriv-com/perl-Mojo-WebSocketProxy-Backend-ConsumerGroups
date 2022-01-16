@@ -429,3 +429,18 @@ sub _prepare_request_data {
 }
 
 1;
+
+=head1 SEE ALSO
+
+L<Mojolicious::Plugin::WebSocketProxy>,
+L<Mojo::WebSocketProxy>
+L<Mojo::WebSocketProxy::Backend>,
+L<Mojo::WebSocketProxy::Dispatcher>,
+L<Mojo::WebSocketProxy::Config>
+L<Mojo::WebSocketProxy::Parser>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (C) 2022 deriv.com
+
+=cut
