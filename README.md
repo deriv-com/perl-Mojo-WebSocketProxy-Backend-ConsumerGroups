@@ -105,4 +105,4 @@ Subscription will be done only once within first request to backend server.
 
 # COPYRIGHT AND LICENSE
 
-Copyright (C) 2022 deriv.com
+Copyright (C) 2022 Deriv Group Services Ltd
