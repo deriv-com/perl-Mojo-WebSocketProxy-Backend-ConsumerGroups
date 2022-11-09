@@ -378,9 +378,7 @@ sub _on_message {
 
     try {
         $message = decode_json_utf8($raw_message);
-    } catch {
-        my $err = $@;
-
+    } catch ($err) {
         $log->errorf('An error occurred while decoding published response from worker: %s', $err);
         return;
     }
