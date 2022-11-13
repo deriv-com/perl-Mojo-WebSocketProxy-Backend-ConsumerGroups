@@ -62,7 +62,7 @@ It takes the following arguments
 - `$req_storage` A hashref of attributes stored with the request.  This routine uses some of the following named arguments:
     - `method` The name of the method at the remote end.
     - `msg_type` a name for this method; if not supplied `method` is used.
-    - `call_params` a hashref of arguments on top of `req_storage` to send to remote method. This will be supplemented with `$req_storage->{args}`
+    - `call_params` a hashref of arguments on top of `req_storage` to send to remote method. This will be suplemented with `$req_storage->{args}`
     added as an `args` key and be merged with `$req_storage->{stash_params}` with stash\_params overwriting any matching
     keys in `call_params`.
     - `rpc_response_callback`  If supplied this will be run with args: `Mojolicious::Controller` instance, the rpc\_response and `$req_storage`.
@@ -105,4 +105,4 @@ Subscription will be done only once within first request to backend server.
 
 # COPYRIGHT AND LICENSE
 
-Copyright (C) 2022 Deriv Group Services Ltd
+Copyright (C) 2022 deriv.com

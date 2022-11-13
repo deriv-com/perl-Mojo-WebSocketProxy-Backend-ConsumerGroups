@@ -18,7 +18,7 @@ use parent qw(Mojo::WebSocketProxy::Backend);
 
 no indirect;
 
-our $VERSION='0.01';
+our $VERSION = '0.02';
 
 __PACKAGE__->register_type('consumer_groups');
 
