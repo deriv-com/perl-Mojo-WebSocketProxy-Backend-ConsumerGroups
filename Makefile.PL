@@ -4,13 +4,13 @@ use warnings;
 
 use 5.006;
 
-use ExtUtils::MakeMaker;
+use ExtUtils::MakeMaker 7.64;
 
 my %WriteMakefileArgs = (
   "ABSTRACT" => "Class for communication with backend by sending messaging through redis streams.",
   "AUTHOR" => "DERIV <DERIV\@cpan.org>",
   "CONFIGURE_REQUIRES" => {
-    "ExtUtils::MakeMaker" => 0
+    "ExtUtils::MakeMaker" => "7.64"
   },
   "DISTNAME" => "Mojo-WebSocketProxy-Backend-ConsumerGroups",
   "LICENSE" => "perl",
@@ -22,6 +22,7 @@ my %WriteMakefileArgs = (
     "JSON::MaybeUTF8" => 0,
     "Log::Any" => 0,
     "Mojo::Redis2" => 0,
+    "Mojo::WebSocketProxy" => "0.13",
     "Mojo::WebSocketProxy::Backend" => 0,
     "MojoX::JSON::RPC::Client" => 0,
     "Syntax::Keyword::Try" => 0,
@@ -37,14 +38,14 @@ my %WriteMakefileArgs = (
     "File::Spec" => 0,
     "IO::Handle" => 0,
     "IPC::Open3" => 0,
-    "Mojo::WebSocketProxy" => "0.13",
     "Test::CheckDeps" => "0.010",
     "Test::Fatal" => 0,
     "Test::MockModule" => 0,
     "Test::MockObject" => 0,
-    "Test::More" => "0.98"
+    "Test::More" => "0.98",
+    "Test::NoTabs" => 0
   },
-  "VERSION" => "0.14",
+  "VERSION" => "0.04",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -70,6 +71,7 @@ my %FallbackPrereqs = (
   "Test::MockModule" => 0,
   "Test::MockObject" => 0,
   "Test::More" => "0.98",
+  "Test::NoTabs" => 0,
   "constant" => 0,
   "curry::weak" => 0,
   "indirect" => "0.37",

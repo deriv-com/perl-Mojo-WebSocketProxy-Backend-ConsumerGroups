@@ -18,7 +18,7 @@ use parent qw(Mojo::WebSocketProxy::Backend);
 
 no indirect;
 
-our $VERSION='0.14';
+our $VERSION = '0.02';
 
 __PACKAGE__->register_type('consumer_groups');
 
@@ -56,7 +56,7 @@ Creates object instance of the class
 
 =item * C<timeout> - Request timeout, in seconds. If not set, uses the environment variable C<RPC_QUEUE_RESPONSE_TIMEOUT>, or defaults to 30
 
-=item * C<queue_separation_enabled> - Boolean to specify if messages should be assigned to different queus based on their C<msg_group> or only C<general> queue.
+=item * C<queue_separation_enabled> - Boolean to specify if messages should be assigned to different queus based on their C<category> or only C<general> queue.
 
 =item * C<category_timeout_config> - A hash containing the timeout value for each request category.
 
@@ -194,7 +194,7 @@ called only when there is an response from the remote call.
 
 =item * C<rpc_failure_cb> a subroutine reference to call if the remote call fails. Called with C<< Mojolicious::Controller >>, the rpc_response and C<< $req_storage >>
 
-=item * C<msg_group> - if supplied, the message will be assigned to the Redis channel with the corresponding name. The I<< general >> channel will be used by default if either C<< $msg_type >> is not provided or C<queue_separation_enabled> is 0.
+=item * C<category> - if supplied, the message will be assigned to the Redis channel with the corresponding name. The I<< general >> channel will be used by default if either C<< $msg_type >> is not provided or C<queue_separation_enabled> is 0.
 
 =back
 
@@ -213,15 +213,15 @@ sub call_rpc {
     my $before_call_hooks             = delete($req_storage->{before_call})             || [];
     my $rpc_failure_cb                = delete($req_storage->{rpc_failure_cb});
     # stream category which message should be assigned to
-    $req_storage->{msg_group} = $self->queue_separation_enabled && $req_storage->{msg_group} ? $req_storage->{msg_group} : DEFAULT_CATEGORY_NAME;
+    $req_storage->{category} = $self->queue_separation_enabled && $req_storage->{category} ? $req_storage->{category} : DEFAULT_CATEGORY_NAME;
 
     foreach my $hook ($before_call_hooks->@*) { $hook->($c, $req_storage) }
 
-    my $category_timeout = $self->_rpc_category_timeout($req_storage->{msg_group});
+    my $category_timeout = $self->_rpc_category_timeout($req_storage->{category});
 
     my $block_response = delete($req_storage->{block_response});
     my ($msg_type, $request_data) = $self->_prepare_request_data($c, $req_storage, $category_timeout);
-    $self->request($request_data, $req_storage->{msg_group}, $category_timeout)->then(
+    $self->request($request_data, $req_storage->{category}, $category_timeout)->then(
         sub {
             my ($message) = @_;
 

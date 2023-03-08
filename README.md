@@ -1,6 +1,10 @@
 # NAME
 
-Mojo::WebSocketProxy::Backend::ConsumerGroup
+Mojo::WebSocketProxy::Backend::ConsumerGroups - Class for communication with backend by sending messaging through redis streams.
+
+# VERSION
+
+version 0.02
 
 # DESCRIPTION
 
@@ -8,6 +12,10 @@ Class for communication with backend by sending messaging through redis streams.
 
 - `Redis streams` is used as channel for sending request to backend servers.
 - `Redis subscriptions` is used as channel for receiving responses from backend servers.
+
+# NAME
+
+Mojo::WebSocketProxy::Backend::ConsumerGroup
 
 # METHODS
 
@@ -18,7 +26,7 @@ Creates object instance of the class
 - `redis_uri` - URI for Redis connection. Ignored if the `redis` argument is also given.
 - `redis` - Redis client object (must be compatible with [Mojo::Redis2](https://metacpan.org/pod/Mojo%3A%3ARedis2)). This argument will override the `redis_uri` argument.
 - `timeout` - Request timeout, in seconds. If not set, uses the environment variable `RPC_QUEUE_RESPONSE_TIMEOUT`, or defaults to 30
-- `queue_separation_enabled` - Boolean to specify if messages should be assigned to different queus based on their `msg_group` or only `general` queue.
+- `queue_separation_enabled` - Boolean to specify if messages should be assigned to different queus based on their `category` or only `general` queue.
 - `category_timeout_config` - A hash containing the timeout value for each request category.
 
         { general => 5, other => 120 }
@@ -62,7 +70,7 @@ It takes the following arguments
 - `$req_storage` A hashref of attributes stored with the request.  This routine uses some of the following named arguments:
     - `method` The name of the method at the remote end.
     - `msg_type` a name for this method; if not supplied `method` is used.
-    - `call_params` a hashref of arguments on top of `req_storage` to send to remote method. This will be supplemented with `$req_storage->{args}`
+    - `call_params` a hashref of arguments on top of `req_storage` to send to remote method. This will be suplemented with `$req_storage->{args}`
     added as an `args` key and be merged with `$req_storage->{stash_params}` with stash\_params overwriting any matching
     keys in `call_params`.
     - `rpc_response_callback`  If supplied this will be run with args: `Mojolicious::Controller` instance, the rpc\_response and `$req_storage`.
@@ -72,7 +80,7 @@ It takes the following arguments
     called only when there is an response from the remote call.
     - `before_call` arrayref of subroutines called before the request to the remote service is made.
     - `rpc_failure_cb` a subroutine reference to call if the remote call fails. Called with `Mojolicious::Controller`, the rpc\_response and `$req_storage`
-    - `msg_group` - if supplied, the message will be assigned to the Redis channel with the corresponding name. The _general_ channel will be used by default if either `$msg_type` is not provided or `queue_separation_enabled` is 0.
+    - `category` - if supplied, the message will be assigned to the Redis channel with the corresponding name. The _general_ channel will be used by default if either `$msg_type` is not provided or `queue_separation_enabled` is 0.
 
 Returns undef.
 
@@ -105,4 +113,15 @@ Subscription will be done only once within first request to backend server.
 
 # COPYRIGHT AND LICENSE
 
-Copyright (C) 2022 Deriv Group Services Ltd
+Copyright (C) 2022 deriv.com
+
+# AUTHOR
+
+DERIV <DERIV@cpan.org>
+
+# COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2021 by Deriv Services Ltd.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
