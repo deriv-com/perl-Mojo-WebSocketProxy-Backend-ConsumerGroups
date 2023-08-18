@@ -2,7 +2,13 @@ Revision History for ConsumerGroups
 
 {{$NEXT}}
 
-0.02      2023-02-23 04:18:42+00:00 UTC
+0.04    2023-08-18 04:18:42+00:00 UTC
+        some changes we don't release last time.
+
+0.03    2023-08-18 04:18:42+00:00 UTC
+        other changes
+
+0.02    2023-02-23 04:18:42+00:00 UTC
         Rename msg_group to category
 
 0.01    2022-04-26 19:12:18:01+00:00 UTC
