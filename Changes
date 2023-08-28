@@ -2,8 +2,7 @@ Revision History for ConsumerGroups
 
 {{$NEXT}}
 
-0.04    2023-08-18 04:18:42+00:00 UTC
-        some changes we don't release last time.
+new feature for logging trace
 
 0.03    2023-08-18 04:18:42+00:00 UTC
         other changes
