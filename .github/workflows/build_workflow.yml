@@ -11,9 +11,12 @@ jobs:
     container:
       image: debian:bullseye
     steps:
-    - uses: actions/checkout@v3.0.0
+    - uses: actions/checkout@v4.0.0
+    - run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
     - name: Check files
-      run: ls -al
+      run: |
+        ls -al
+        git status
     - name: Install Perl packages
       run: apt-get update && apt-get install -y cpanminus make gcc openssl libssl-dev zlib1g-dev git
     - name: Install dzil
@@ -23,9 +26,7 @@ jobs:
     - name: Install Mojo::WebSocketProxy (will delete after Mojo::WebSocketProxy new version released)
       run: cpanm -n https://github.com/chylli-deriv/perl-Mojo-WebSocketProxy.git@chylli/spit-module-from-Mojo-WebSocketProxy
     - name: Install distribution deps
-      run: |
-        git init
-        dzil listdeps --author --missing --cpanm-versions | xargs cpanm -n
+      run: cpm install --show-build-log-on-failure -w 2 --mirror=http://cpan.cpantesters.org/ -g $(dzil listdeps --author --missing)
     - name: Run smoke test
       run: dzil smoke --release --author
     - name: Run coverage test
