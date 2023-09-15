@@ -12,7 +12,9 @@ jobs:
       image: debian:bullseye
     steps:
     - name: Install Perl packages
-      run: apt-get update && apt-get install -y cpanminus make gcc openssl libssl-dev zlib1g-dev git
+      run: |
+        apt-get update && apt-get install -y cpanminus make gcc openssl libssl-dev zlib1g-dev git
+        git config --global --add safe.directory "$GITHUB_WORKSPACE"
     - uses: actions/checkout@v4.0.0
     - name: Check files
       run: |
