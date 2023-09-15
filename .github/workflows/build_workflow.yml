@@ -12,13 +12,13 @@ jobs:
       image: debian:bullseye
     steps:
     - uses: actions/checkout@v4.0.0
-    - run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+    - name: Install Perl packages
+      run: |
+        apt-get update && apt-get install -y cpanminus make gcc openssl libssl-dev zlib1g-dev git
+        git config --global --add safe.directory "$GITHUB_WORKSPACE"
     - name: Check files
       run: |
         ls -al
-        git status
-    - name: Install Perl packages
-      run: apt-get update && apt-get install -y cpanminus make gcc openssl libssl-dev zlib1g-dev git
     - name: Install dzil
       run: cpanm --notest Dist::Zilla Dist::Zilla::App::Command::cover App::cpm Devel::Cover::Report::Codecov https://cpan.metacpan.org/authors/id/S/SR/SRI/Mojolicious-7.29.tar.gz https://cpan.metacpan.org/authors/id/B/BI/BINGOS/ExtUtils-MakeMaker-7.30.tar.gz
     - name: Install dzil author deps
