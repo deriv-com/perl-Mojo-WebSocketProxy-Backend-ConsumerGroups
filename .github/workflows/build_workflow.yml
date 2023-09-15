@@ -11,13 +11,15 @@ jobs:
     container:
       image: debian:bullseye
     steps:
-    - uses: actions/checkout@v3.0.0
+    - uses: actions/checkout@v4.0.0
     - name: Install Perl packages
       run: apt-get update && apt-get install -y cpanminus make gcc openssl libssl-dev zlib1g-dev git
     - name: Install dzil
       run: cpanm --notest Dist::Zilla Dist::Zilla::App::Command::cover App::cpm Devel::Cover::Report::Codecov https://cpan.metacpan.org/authors/id/S/SR/SRI/Mojolicious-7.29.tar.gz https://cpan.metacpan.org/authors/id/B/BI/BINGOS/ExtUtils-MakeMaker-7.30.tar.gz
     - name: Install dzil author deps
       run: cpm install --show-build-log-on-failure -w 2 --mirror=http://cpan.cpantesters.org/ -g $(dzil authordeps --missing)
+    - name: Install Mojo::WebSocketProxy (will delete after Mojo::WebSocketProxy new version released)
+      run: cpanm -n https://github.com/chylli-deriv/perl-Mojo-WebSocketProxy.git@chylli/spit-module-from-Mojo-WebSocketProxy
     - name: Install distribution deps
       run: cpm install --show-build-log-on-failure -w 2 --mirror=http://cpan.cpantesters.org/ -g $(dzil listdeps --author --missing)
     - name: Run smoke test
