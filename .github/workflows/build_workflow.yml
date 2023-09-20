@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     container:
       image: debian:bullseye
     steps:
@@ -26,6 +28,6 @@ jobs:
     - name: Run smoke test
       run: dzil smoke --release --author
     - name: Run coverage test
-      run: dzil cover -test -report codecov
+      run: dzil cover -test -report coveralls
     - name: Run extended author test
       run: dzil xtest
