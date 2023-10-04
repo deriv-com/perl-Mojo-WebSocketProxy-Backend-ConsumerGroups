@@ -4,7 +4,7 @@ Mojo::WebSocketProxy::Backend::ConsumerGroups - Class for communication with bac
 
 # VERSION
 
-version 0.04
+version 0.02
 
 # DESCRIPTION
 
