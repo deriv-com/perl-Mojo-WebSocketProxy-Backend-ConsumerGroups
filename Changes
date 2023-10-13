@@ -2,6 +2,9 @@ Revision History for ConsumerGroups
 
 {{$NEXT}}
 
+        
+        correlation_id added in call-params
+
 0.04      2023-08-28 11:13:42+00:00 UTC
         new feature for logging trace
 
