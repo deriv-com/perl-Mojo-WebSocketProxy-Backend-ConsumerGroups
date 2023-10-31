@@ -415,14 +415,16 @@ sub _prepare_request_data {
 
     my $params       = $self->make_call_params($c, $req_storage);
     my $stash_params = $req_storage->{stash_params};
+    my $req_log_context      = $req_storage->{logger}->get_context() if $req_storage->{logger};
 
     my $request_data = [
         rpc      => $method,
         who      => $self->whoami,
         deadline => time + $req_timeout,
 
-        $params       ? (args  => encode_json_utf8($params))       : (),
-        $stash_params ? (stash => encode_json_utf8($stash_params)) : (),
+        $params          ? (args            => encode_json_utf8($params))         : (),
+        $stash_params    ? (stash           => encode_json_utf8($stash_params))   : (),
+        $req_log_context ? (req_log_context => encode_json_utf8($req_log_context)): (),
     ];
 
     return $msg_type, $request_data;
