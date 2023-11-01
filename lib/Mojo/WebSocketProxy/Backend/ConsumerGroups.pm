@@ -409,13 +409,13 @@ sub _prepare_request_data {
     my ($self, $c, $req_storage, $req_timeout) = @_;
 
     $req_storage->{call_params} ||= {};
-
+    my $req_log_context;
     my $method   = $req_storage->{method};
     my $msg_type = $req_storage->{msg_type} ||= $req_storage->{method};
 
     my $params       = $self->make_call_params($c, $req_storage);
     my $stash_params = $req_storage->{stash_params};
-    my $req_log_context      = $req_storage->{logger}->get_context() if $req_storage->{logger};
+    $req_log_context      = $req_storage->{logger}->get_context() if $req_storage->{logger};
 
     my $request_data = [
         rpc      => $method,
