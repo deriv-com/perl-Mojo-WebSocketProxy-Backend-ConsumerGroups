@@ -82,11 +82,8 @@ subtest 'RPC Timeout extension active' => sub {
         args                          => {},
     };
 
-    my $expected_deadline = $timeouts_config->{payment};
-    my $expected_timeout = $timeouts_config->{payment} +
-        $req_storage->{rpc_timeout_extend_offset} +
-        ($req_storage->{rpc_timeout_extend_percentage}/100) * $timeouts_config->{payment}    ;
-
+    my $expected_deadline = 4;
+    my $expected_timeout = 4 + 10 + 1;
 
     $passed_deadline = undef;
     $passed_timout = undef;
