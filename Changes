@@ -2,7 +2,10 @@ Revision History for ConsumerGroups
 
 {{$NEXT}}
 
-0.06      2024-05-21 11:52:48+00:00 UTC
+0.07      2024-05-21 11:52:48+00:00 UTC
+          Allow send method to be replaced with a hook
+
+0.06      2024-03-28 11:52:48+00:00 UTC
           Allow timeout to be extended vs published deadline
 
 0.05      2023-11-07 07:54:26+00:00 UTC
