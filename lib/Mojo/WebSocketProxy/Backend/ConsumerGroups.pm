@@ -354,7 +354,7 @@ sub _send_request {
 
     my $f = $self->loop->new_future;
     $self->redis->_execute(
-        xadd => XADD => ($category_name, qw(MAXLEN ~ 100000), '*', $request_data->@*),
+        xadd => XADD => ($category_name, qw(MAXLEN ~ 500000), '*', $request_data->@*),
         sub {
             my ($redis, $err) = @_;
 
